@@ -1,0 +1,11 @@
+{
+    "name": "sicredi/credeasy",
+    "description": "Projeto para gerenciamento de empréstimos e clientes",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Sicredi\\Credeasy\\": "src/"
+        }
+    },
+    "require": {}
+}
