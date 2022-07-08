@@ -7,5 +7,14 @@
             "Sicredi\\Credeasy\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "nyholm/psr7": "^1.5",
+        "php-di/php-di": "^6.4",
+        "nyholm/psr7-server": "^1.0",
+        "psr/http-server-handler": "^1.0",
+        "psr/http-message": "^1.0",
+        "doctrine/orm": "^2.12",
+        "doctrine/annotations": "^1.13",
+        "symfony/cache": "^6.1"
+    }
 }
