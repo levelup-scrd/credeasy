@@ -17,10 +17,8 @@ if (!array_key_exists($caminho, $rotas)) {
 
 session_start();
 
-$rota = $rotas[$caminho];
-$ehRotaAnonima = in_array('ANONIMO', $rota['perfis']);
-
-if (!isset($_SESSION['logado']) && !$ehRotaAnonima) {
+$ehRotaDeLogin = stripos($caminho, 'login');
+if (!isset($_SESSION['logado']) && $ehRotaDeLogin === false) {
     header('Location: /login');
     exit();
 }
@@ -34,13 +32,14 @@ $creator = new ServerRequestCreator(
     $psr17Factory  // StreamFactory
 );
 
+$serverRequest = $creator->fromGlobals();
+
+$classeControladora = $rotas[$caminho];
 /** @var ContainerInterface $container */
 $container = require __DIR__ . '/../config/dependencies.php';
-
 /** @var RequestHandlerInterface $controlador */
-$controlador = $container->get($rota['controller']);
+$controlador = $container->get($classeControladora);
 
-$serverRequest = $creator->fromGlobals();
 $resposta = $controlador->handle($serverRequest);
 
 foreach ($resposta->getHeaders() as $name => $values) {
